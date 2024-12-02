@@ -1,26 +1,49 @@
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
-
-//Import di Classi Java necessarie al funzionamento del programma
 import java.util.Scanner;
 
-// Classe principale, con metodo main
 class Esercizio {
-    // Il programma parte con una chiamata a main().
     public static void main(String args[])
     {
-        //Variabili del programma
-        String nome;
+        int n;
+        float somma;
+        float media;
+        float limiteCrediti = 6;
 
-        //Creo l'oggetto in per l'input da tastiera
-        Scanner in = new Scanner( System.in );
+        Scanner scanner = new Scanner(System.in);
 
-        //Leggo l'input da tastiera
-        System.out.print("Inserisci il tuo nome: ");
-        nome = in.nextLine();
-
-        //Output del nome acquisito da tastiera
-        System.out.println("Ciao "+nome+"!");
+        do {
+            System.out.println("Inserire il numero di studenti: ");
+            n = Integer.parseInt(scanner.nextLine());
+        } while ( n <= 0 );
+        
+        String[] studenti = new String[n];
+        float[] voti = new float[n];
+        float[] crediti = new float[n];
+        
+        for (int i = 0; i < n; i++) {
+            System.out.println("Nome " + (i + 1) + "° studente: ");
+            studenti[i] = scanner.nextLine();
+            
+            System.out.println("Voto " + (i + 1) + "° studente: ");
+            voti[i] = Float.parseFloat(scanner.nextLine());
+            
+            System.out.println("Crediti " + (i + 1) + "° studente: ");
+            crediti[i] = Float.parseFloat(scanner.nextLine());
+        }
+        
+        somma = 0;
+        for (int i = 0; i < n; i++) {
+            somma = somma + voti[i];
+        }
+        media = somma / n;
+        
+        System.out.println("Lista di studenti con votazione superiore alla media " + 
+                          media + " e con almeno " + limiteCrediti + " crediti.");
+        
+        for (int i = 0; i < n; i++) {
+            if (voti[i] > media && crediti[i] >= limiteCrediti) {
+                System.out.println("Lo studente " + studenti[i] + " ha voto " + voti[i] +
+                                    " e " +crediti[i] + " crediti");
+            }
+        }
     }
 }
-
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
